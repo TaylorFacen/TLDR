@@ -11,7 +11,7 @@ joblib==0.16.0
 MarkupSafe==1.1.1
 nltk==3.5
 openai==0.2.4
-readability==0.3.1
+readability-lxml==0.8.1
 regex==2020.7.14
 requests==2.24.0
 soupsieve==2.0.1
