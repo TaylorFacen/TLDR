@@ -16,7 +16,6 @@ def get_summary():
 
     # Parse article text
     text = parse_article(url)
-    print(text)
 
     # Generate summary
     summary = generate_summary(text)
@@ -25,7 +24,7 @@ def get_summary():
     actions = {
         "actions": [
             {
-                "say": text
+                "say": summary
             }
         ]
     }
