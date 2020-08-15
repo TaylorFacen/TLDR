@@ -1,0 +1,165 @@
+{
+    "friendlyName" : "",
+    "logQueries" : true,
+    "uniqueName" : "summarizer",
+    "defaults" : {
+        "defaults" : {
+            "assistant_initiation" : "task://fetch_summary",
+            "fallback" : "task://fallback",
+            "collect" : {
+                "validate_on_failure" : "task://collect_fallback"
+            }
+        }
+    },
+    "styleSheet" : {
+        "style_sheet" : {
+            "collect" : {
+                "validate" : {
+                    "on_failure" : {
+                        "repeat_question" : false,
+                        "messages" : [
+                            {
+                                "say" : {
+                                    "speech" : "I didn't get that. What did you say?"
+                                }
+                            },
+                            {
+                                "say" : {
+                                    "speech" : "I still didn't catch that. Please repeat."
+                                }
+                            },
+                            {
+                                "say" : {
+                                    "speech" : "Let's try one last time. Say it again please."
+                                }
+                            }
+                        ]
+                    },
+                    "on_success" : { "say" : { "speech" : "" } },
+                    "max_attempts" : 4
+                }
+            },
+            "voice" : {
+                "say_voice" : "Polly.Matthew"
+            },
+            "name" : ""
+        }
+    },
+    "fieldTypes" : [
+        {
+            "uniqueName" : "URL_ADDRESS",
+            "values" : [
+                {
+                    "language" : "en-US",
+                    "value" : "google.com",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "https://google.com",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "https://google.com/some-other-string",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "http://google.com",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "http://google.com-some-other-string",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "google.com/some-other-string",
+                    "synonymOf" : null
+                }
+            ]
+        }
+    ],
+    "tasks" : [
+        {
+            "uniqueName" : "fetch_summary",
+            "actions" : {
+                "actions" : [
+                    {
+                        "collect" : {
+                            "on_complete" : {
+                                "redirect" : {
+                                    "method" : "POST",
+                                    "uri" : "[ENTER_URL_HERE]/api/summary"
+                                }
+                            },
+                            "name" : "summarize_article",
+                            "questions" : [
+                                {
+                                    "prefill" : "URL",
+                                    "question" : "What's the URL for the article?",
+                                    "name" : "article_url"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "fields" : [
+                {
+                    "uniqueName" : "URL",
+                    "fieldType" : "URL_ADDRESS"
+                }
+            ],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "What does {URL} say?"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Summarize {URL}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Summarize an article"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Get a summary"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "collect_fallback",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "Looks like I'm having trouble. Apologies for that. Let's start again, how can I help you today?"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "fallback",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "I'm sorry didn't quite get that. Please say that again."
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        }
+    ],
+    "modelBuild" : {
+        "uniqueName" : "summarizer_15-8-2020_12.05.32pm"
+    }
+}
