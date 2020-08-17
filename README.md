@@ -3,7 +3,6 @@
 This app was written for a talk for Twilio's Signal 2020 Conference. This repo has the following 3 branches:
 * starter - Starter code if you want to start from scratch
 * extractive-summarization - Example code for extractive summarization
-* main - Full code using OpenAI's GPT-3
 
 To follow along, create a virtual environment and install all dependencies
 
