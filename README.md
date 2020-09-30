@@ -22,4 +22,4 @@ python run.py
 ## Interacting with Autopilot
 While working locally, you can use a service like [ngrok](https://ngrok.com) to connect Twilio Autopilot to the API. After using ngrok or another service to make the API publically, accessible, add the public url to line 95 of `summarizer.json` use the Twilio Autopilot CLI to create and / or update an autopilot bot. You can also configure the bot manually on twilio.com. 
 
-For the production deployment of this app, I deployed a serverless function via Google Cloud Functions. Code and requirements for function can be found in the `functions` folder on the `main` branch.
+For the production deployment of this app, I deployed a serverless function via Google Cloud Functions. Code and requirements for the function can be found in the `functions` folder on the `main` branch. 
